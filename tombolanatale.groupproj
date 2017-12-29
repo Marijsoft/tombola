@@ -1,0 +1,60 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <ProjectGuid>{8CDE63CC-4F4A-42E5-9DA3-5BA5D186C6F8}</ProjectGuid>
+    </PropertyGroup>
+    <ItemGroup>
+        <Projects Include="Tombola.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="TombolaClient.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="tombolalinux\Tombolalnx.dproj">
+            <Dependencies/>
+        </Projects>
+    </ItemGroup>
+    <ProjectExtensions>
+        <Borland.Personality>Default.Personality.12</Borland.Personality>
+        <Borland.ProjectType/>
+        <BorlandProject>
+            <Default.Personality/>
+        </BorlandProject>
+    </ProjectExtensions>
+    <Target Name="Tombola">
+        <MSBuild Projects="Tombola.dproj"/>
+    </Target>
+    <Target Name="Tombola:Clean">
+        <MSBuild Projects="Tombola.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="Tombola:Make">
+        <MSBuild Projects="Tombola.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="TombolaClient">
+        <MSBuild Projects="TombolaClient.dproj"/>
+    </Target>
+    <Target Name="TombolaClient:Clean">
+        <MSBuild Projects="TombolaClient.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="TombolaClient:Make">
+        <MSBuild Projects="TombolaClient.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Tombolalnx">
+        <MSBuild Projects="tombolalinux\Tombolalnx.dproj"/>
+    </Target>
+    <Target Name="Tombolalnx:Clean">
+        <MSBuild Projects="tombolalinux\Tombolalnx.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="Tombolalnx:Make">
+        <MSBuild Projects="tombolalinux\Tombolalnx.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Build">
+        <CallTarget Targets="Tombola;TombolaClient;Tombolalnx"/>
+    </Target>
+    <Target Name="Clean">
+        <CallTarget Targets="Tombola:Clean;TombolaClient:Clean;Tombolalnx:Clean"/>
+    </Target>
+    <Target Name="Make">
+        <CallTarget Targets="Tombola:Make;TombolaClient:Make;Tombolalnx:Make"/>
+    </Target>
+    <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+</Project>
